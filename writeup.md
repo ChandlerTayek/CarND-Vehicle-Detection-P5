@@ -80,13 +80,17 @@ file `clf.pk` so the user doesn't need to re-train and can just load in the file
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 All of the code for the sliding window search is located in the cell labeled `Sliding Window`,
-`Box Drawing`, and `Sliding Window Example`.
+`Box Drawing`, and `Sliding Window Example`. I decided to cut off the top and left hand side
+of the image as searching the sky and other side of the road (trees) are not necessary.
+I combined all three scales in order to get more positive detections as one scale wasn't
+giving enough hits.
 I decided to try out different scales and overlaps until I arrived at an optimal result:
 
-* `x_start_stop`: [None, None]
-* `y_start_stop`: [400, None]
+* `x_start_stop`: [450, 1280]
+* `y_start_stop`: [400, 656]
 * `xy_window`: (128, 128)
 * `xy_overlap`: (0.5, 0.5)
+* `scales`: (1.0, 1.5, 2.0)
 
 
 ![alt text][image3]
