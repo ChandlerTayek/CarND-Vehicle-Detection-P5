@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 [image5]:./output_images/pipeline_output_2.png
 [image6]: ./output_images/bboxes_and_heat.png
 [image7]: ./output_images/output_bboxes.png
-[image8]: ./output_images/multi_scale_example
+[image8]: ./output_images/multi_scale_example.png
 [video1]: ./test.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -128,8 +128,8 @@ any false positives removed:
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./output_vid.mp4)
-
+Here's a [link to my video result](https://youtu.be/EpgqjJfR1ms)
+The raw video can also be found in this repo as `./output_vid.mp4`
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
