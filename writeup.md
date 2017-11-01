@@ -17,6 +17,7 @@ The goals / steps of this project are the following:
 [image5]:./output_images/pipeline_output_2.png
 [image6]: ./output_images/bboxes_and_heat.png
 [image7]: ./output_images/output_bboxes.png
+[image8]: ./output_images/multi_scale_example
 [video1]: ./test.mp4
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
@@ -78,22 +79,35 @@ file `clf.pk` so the user doesn't need to re-train and can just load in the file
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
-#TODO: Explain how I used scaling instead of sliding window search
 All of the code for the sliding window search is located in the cell labeled `Sliding Window`,
 `Box Drawing`, and `Sliding Window Example`. I decided to cut off the top and left hand side
 of the image as searching the sky and other side of the road (trees) are not necessary.
 I combined all three scales in order to get more positive detections as one scale wasn't
 giving enough hits.
-I decided to try out different scales and overlaps until I arrived at an optimal result:
+
+The image and parameters below is what was first used as an initial prototype sliding
+each window then extracting hog features for each window:
 
 * `x_start_stop`: [450, 1280]
 * `y_start_stop`: [400, 656]
 * `xy_window`: (128, 128)
 * `xy_overlap`: (0.5, 0.5)
-* `scales`: (1.0, 1.5, 2.0)
+* `window-size`: (90, 90)
 
 #TODO: Fix this image below
 ![alt text][image3]
+
+The most optimal parameters used were below which only took the hog of the image
+once then used different scales (to scale the entire image) in order to get the desired window size.
+
+
+* `x_start_stop`: [None, None]
+* `y_start_stop`: [400, None]
+* `xy_window`: (128, 128)
+* `xy_overlap`: (0.5, 0.5)
+* `scales`: (1.0, 1.5, 2.0) {64x64, 96x96, 128,128}
+
+
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -114,7 +128,7 @@ any false positives removed:
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_vid.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
@@ -124,15 +138,17 @@ I recorded the positions of positive detections in  each frame of the video.  Fr
 Here's an example result showing the heatmap from a series of frames of video:
 
 ### Here are six frames and their corresponding heatmaps:
-
+Note that this is only using a single sized box and sliding it over with the
+first set of parameters under the sliding window search section above.
 ![alt text][image6]
 
 
 ### Here are the six frames that have the `scipy.ndimage.measurements.label()` applied and false positives removed:
 ![alt text][image7]
 
-
-
+### This is an example of what the entire pipeline does to a frame
+### using the second set of parameters under the section window search above.
+![alt text][image8]
 ---
 
 ### Discussion
@@ -141,4 +157,6 @@ Here's an example result showing the heatmap from a series of frames of video:
 
 My pipeline will likely fail if the camera is used in a center or left lane since I didn't include the left half of the frame.
 
-I could implement the vehicle object that I had written in order to better track individual pieces of information about each car.
+I could implement the vehicle object tracking that I have written in order to better track individual pieces of information about each car.
+
+Searching only areas around a certain perspective per each scale would reduce the amount of processing time.
