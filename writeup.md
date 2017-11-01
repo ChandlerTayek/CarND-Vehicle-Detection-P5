@@ -78,7 +78,7 @@ file `clf.pk` so the user doesn't need to re-train and can just load in the file
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
-
+#TODO: Explain how I used scaling instead of sliding window search
 All of the code for the sliding window search is located in the cell labeled `Sliding Window`,
 `Box Drawing`, and `Sliding Window Example`. I decided to cut off the top and left hand side
 of the image as searching the sky and other side of the road (trees) are not necessary.
@@ -92,7 +92,7 @@ I decided to try out different scales and overlaps until I arrived at an optimal
 * `xy_overlap`: (0.5, 0.5)
 * `scales`: (1.0, 1.5, 2.0)
 
-
+#TODO: Fix this image below
 ![alt text][image3]
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
@@ -139,7 +139,6 @@ Here's an example result showing the heatmap from a series of frames of video:
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The hardest part of the project and something that is still broken is smoothing out all of the
-jittering and drawing the bounding boxes on the frames where the bounding boxes disappear.
-The logic of when I need to draw a car at its average location when it doesn't show up in the
-frame originally needs to be changed (any tips would be great).
+My pipeline will likely fail if the camera is used in a center or left lane since I didn't include the left half of the frame.
+
+I could implement the vehicle object that I had written in order to better track individual pieces of information about each car.
