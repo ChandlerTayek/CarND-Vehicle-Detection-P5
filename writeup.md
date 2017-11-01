@@ -157,6 +157,7 @@ first set of parameters under the sliding window search section above.
 
 My pipeline will likely fail if the camera is used in a center or left lane since I didn't include the left half of the frame.
 
-I could implement the vehicle object tracking that I have written in order to better track individual pieces of information about each car.
+I could implement the vehicle object tracking that I have written in more elegant way.
 
 Searching only areas around a certain perspective per each scale would reduce the amount of processing time.
+This will also allow me to add smaller scales to get a more precise boarder
