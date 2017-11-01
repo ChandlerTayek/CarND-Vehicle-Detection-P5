@@ -94,7 +94,6 @@ each window then extracting hog features for each window:
 * `xy_overlap`: (0.5, 0.5)
 * `window-size`: (90, 90)
 
-#TODO: Fix this image below
 ![alt text][image3]
 
 The most optimal parameters used were below which only took the hog of the image
@@ -140,6 +139,7 @@ Here's an example result showing the heatmap from a series of frames of video:
 ### Here are six frames and their corresponding heatmaps:
 Note that this is only using a single sized box and sliding it over with the
 first set of parameters under the sliding window search section above.
+
 ![alt text][image6]
 
 
